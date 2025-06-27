@@ -5,9 +5,6 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -50,21 +47,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
-
--- [[ My keymaps ]]
---
-vim.keymap.set('n', '<leader>cd', function()
-  local diags = vim.diagnostic.get(0, { lnum = vim.fn.line '.' - 1 })
-  if #diags == 0 then
-    print 'No diagnostics on this line.'
-    return
-  end
-  local msgs = vim.tbl_map(function(d)
-    return d.message
-  end, diags)
-  local combined = table.concat(msgs, '\n')
-  vim.fn.setreg('+', combined)
-  print 'Copied all diagnostics on this line.'
-end, { desc = '[C]opy all [d]iagnostics on this line' })
 
 -- vim: ts=2 sts=2 sw=2 et
