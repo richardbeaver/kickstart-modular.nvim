@@ -27,7 +27,12 @@ return {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      -- NOTE: Having some issues in C++ files with enter inside new curly braces
+      -- adding two indent levels; later, it was not adding any indent level;
+      -- disabling this stopped that issue. Maybe revisit at some point to try to
+      -- figure out why
+      -- indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = false },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:

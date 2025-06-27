@@ -81,17 +81,9 @@ vim.o.expandtab = true
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'just',
   callback = function()
-    vim.bo.expandtab = false
-    vim.bo.tabstop = 4
-    vim.bo.shiftwidth = 4
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'cpp',
-  callback = function()
-    vim.bo.tabstop = 2
-    vim.bo.shiftwidth = 2
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
   end,
 })
 
