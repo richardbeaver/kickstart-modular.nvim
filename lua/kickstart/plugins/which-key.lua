@@ -63,6 +63,7 @@ return {
         { '<leader>t', group = '[T]oggle' },
         { '<leader>d', group = '[D]iagnostics' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>r', group = '[R]eplace', mode = { 'n', 'v' } },
       },
     },
   },

@@ -48,4 +48,32 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- [[ Replacing Text ]]
+--
+vim.keymap.set('n', '<leader>rw', [["_diwP]], { desc = '[R]eplace [W]ord under cursor with last op' })
+
+vim.keymap.set('n', '<leader>rl', function()
+  -- figure out if the unnamed register is linewise (V) or not
+  local rtype = vim.fn.getregtype('"'):sub(1, 1)
+  if rtype == 'V' then
+    --  linewise register
+    vim.cmd 'normal! "_ddP'
+  else
+    -- for charwise or block, need to feed real <C-r>" and <Esc>
+    -- build the keystroke sequence:
+    local cr_dqt = vim.api.nvim_replace_termcodes('<C-r>"', true, false, true)
+    local esc = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
+    -- and prepend the black-hole change‐line command:
+    local seq = '"_cc' .. cr_dqt .. esc
+    vim.api.nvim_feedkeys(seq, 'n', false)
+  end
+end, { desc = '[R]eplace current [L]ine with last op' })
+
+vim.keymap.set(
+  'n',
+  '<leader>rs',
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]],
+  { desc = '[R]eplace with [S]ubstitution' }
+)
+
 -- vim: ts=2 sts=2 sw=2 et
