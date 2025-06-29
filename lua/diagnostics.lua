@@ -38,6 +38,8 @@ vim.diagnostic.config {
 --
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnostics - Open [Float]' })
+
 --
 
 local diagnostics_virtual_text_enabled = true
