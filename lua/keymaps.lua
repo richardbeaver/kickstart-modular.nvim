@@ -1,9 +1,19 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- Clear highlights and close floating windows
+vim.keymap.set('n', '<Esc>', function()
+  -- Clear highlights on search when pressing <Esc> in normal mode
+  -- See `:help hlsearch`
+  vim.cmd 'nohlsearch'
+
+  -- Close any floating windows
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative == 'win' then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end)
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
