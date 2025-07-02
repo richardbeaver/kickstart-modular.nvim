@@ -64,6 +64,8 @@ return {
         { '<leader>d', group = '[D]iagnostics' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>r', group = '[R]eplace', mode = { 'n', 'v' } },
+        -- TODO: this overlaps with Toggling commands; figure something out
+        { '<leader>t', group = '[T]erminal', mode = { 'n' } },
       },
     },
   },
