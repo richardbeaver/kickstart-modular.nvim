@@ -4,7 +4,8 @@
 
 -- Default virtual text config
 local virtual_text_config = {
-  source = 'if_many',
+  -- source = 'if_many',
+  source = true,
   spacing = 2,
   format = function(diagnostic)
     local diagnostic_message = {
@@ -20,7 +21,8 @@ local virtual_text_config = {
 -- Set configuration
 vim.diagnostic.config {
   severity_sort = true,
-  float = { border = 'rounded', source = 'if_many' },
+  -- float = { border = 'rounded', source = 'if_many' },
+  float = { border = 'rounded', source = true },
   -- underline = { severity = vim.diagnostic.severity.ERROR },
   underline = true,
   signs = vim.g.have_nerd_font and {
