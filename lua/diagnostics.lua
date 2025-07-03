@@ -44,12 +44,12 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnos
 
 local diagnostics_virtual_text_enabled = true
 
-vim.keymap.set('n', '<leader>dv', function()
+vim.keymap.set('n', '<leader>td', function()
   diagnostics_virtual_text_enabled = not diagnostics_virtual_text_enabled
   vim.diagnostic.config {
     virtual_text = diagnostics_virtual_text_enabled and virtual_text_config or false,
   }
-end, { desc = '[D]iagnostics - Toggle [V]irtual text' })
+end, { desc = 'Diagnostics: [T]oggle [D]iagnostic virtual text' })
 
 --
 
